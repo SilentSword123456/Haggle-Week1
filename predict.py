@@ -14,11 +14,11 @@ for model_name, configs in hp.items():
 
 train, hold = train_test_split(df, test_size=0.2, random_state=42)
 
-#predictor = TabularPredictor(label="log_hours", eval_metric="rmse", path="models/ag").fit(train, presets="high_v150", hyperparameters=hp, time_limit=1200)
+predictor = TabularPredictor(label="log_hours", eval_metric="rmse", path="models/ag").fit(train, presets="high_v150", hyperparameters=hp, time_limit=1200)
 
-predicator = TabularPredictor.load("models/ag")
+#predicator = TabularPredictor.load("models/ag")
 test = pd.read_csv("test.csv")
-log_pred = predicator.predict(test)
+log_pred = predictor.predict(test)
 hours = np.expm1(log_pred).clip(0.1)
 
 out = test[["project_id"]].copy() if "project_id" in test.columns else pd.DataFrame(index=test.index)
