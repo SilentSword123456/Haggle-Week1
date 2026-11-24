@@ -14,7 +14,7 @@ for model_name, configs in hp.items():
 
 train, hold = train_test_split(df, test_size=0.2, random_state=42)
 
-predictor = TabularPredictor(label="log_hours", eval_metric="rmse", path="models/ag").fit(train, presets="high_v150", hyperparameters=hp, time_limit=1200)
+predictor = TabularPredictor(label="log_hours", eval_metric="rmse", path="models/ag").fit(train, presets="high_v150", hyperparameters=hp, time_limit=500)
 
 #predicator = TabularPredictor.load("models/ag")
 test = pd.read_csv("test.csv")
